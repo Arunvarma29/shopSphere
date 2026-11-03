@@ -19,6 +19,8 @@ const blank = {
   stock: "0",
   isPublished: true,
 };
+
+
 export default function AdminPage() {
   const [tab, setTab] = useState("overview"),
     [overview, setOverview] = useState(null),

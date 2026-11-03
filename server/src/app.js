@@ -28,10 +28,10 @@ app.use(
 app.get("/api/health", (_req, res) =>
   res.json({ status: "ok", time: new Date().toISOString() }),
 );
-app.use("/api/auth", authRoutes);
-app.use("/api/products", productRoutes);
-app.use("/api/orders", orderRoutes);
-app.use("/api/admin", adminRoutes);
+app.use("/auth", authRoutes);
+app.use("/products", productRoutes);
+app.use("/orders", orderRoutes);
+app.use("/admin", adminRoutes);
 app.use(notFound);
 app.use(errorHandler);
 export default app;

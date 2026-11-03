@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+
 export default function AuthPage({ mode = "login" }) {
   const isRegister = mode === "register";
   const [form, setForm] = useState({ name: "", email: "", password: "" }),

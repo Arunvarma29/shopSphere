@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { http } from "../api/http";
 import { useCart } from "../context/CartContext";
+
+
 export default function ProductDetails() {
   const { slug } = useParams(),
     [product, setProduct] = useState(null),

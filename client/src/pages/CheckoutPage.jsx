@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { http } from "../api/http";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
+
+
 export default function CheckoutPage() {
   const { items, total, clear } = useCart(),
     { user } = useAuth(),
