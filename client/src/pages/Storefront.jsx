@@ -4,13 +4,34 @@ import ProductCard from "../components/ProductCard";
 export default function Storefront() {
   const [products, setProducts] = useState([]),
     [q, setQ] = useState(""),
-    [loading, setLoading] = useState(true);
+    [loading, setLoading] = useState(true),
+    [error, setError] = useState("");
   useEffect(() => {
     setLoading(true);
-    http
-      .get("/products", { params: { q, limit: 24 } })
-      .then((r) => setProducts(r.data.products))
-      .finally(() => setLoading(false));
+    setError("");
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => {
+      http
+        .get("/products", {
+          params: { q: q.trim() || undefined, limit: 24 },
+          signal: controller.signal,
+        })
+        .then((r) => setProducts(r.data.products))
+        .catch(() => {
+          if (!controller.signal.aborted) {
+            setProducts([]);
+            setError("Products could not be loaded. Please try again.");
+          }
+        })
+        .finally(() => {
+          if (!controller.signal.aborted) setLoading(false);
+        });
+    }, q.trim() ? 250 : 0);
+
+    return () => {
+      window.clearTimeout(timeout);
+      controller.abort();
+    };
   }, [q]);
   return (
     <main className="container page">
@@ -38,12 +59,16 @@ export default function Storefront() {
         </div>
         <input
           className="search"
+          type="search"
+          aria-label="Search products"
           placeholder="Search products…"
           value={q}
           onChange={(e) => setQ(e.target.value)}
         />
       </div>
-      {loading ? (
+      {error ? (
+        <p role="alert">{error}</p>
+      ) : loading ? (
         <p>Loading products…</p>
       ) : products.length ? (
         <div className="product-grid">

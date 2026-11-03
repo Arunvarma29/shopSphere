@@ -1,11 +1,21 @@
 import Product from "../models/Product.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
 export const listProducts = asyncHandler(async (req, res) => {
   const { q, category, sort = "newest", page = 1, limit = 12 } = req.query;
   const filter = { isPublished: true };
   if (category) filter.category = category;
-  if (q) filter.$text = { $search: String(q) };
+  const search = String(q || "").trim();
+  if (search) {
+    const pattern = new RegExp(escapeRegExp(search), "i");
+    filter.$or = [
+      { name: pattern },
+      { description: pattern },
+      { tags: pattern },
+    ];
+  }
   const sortMap = {
     newest: { createdAt: -1 },
     price_asc: { price: 1 },

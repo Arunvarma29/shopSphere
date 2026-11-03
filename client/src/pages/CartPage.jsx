@@ -29,8 +29,10 @@ export default function CartPage() {
                   type="number"
                   min="1"
                   max={p.stock}
+                  step="1"
                   value={p.quantity}
-                  onChange={(e) => change(p._id, e.target.value)}
+                  disabled={p.stock <= 0}
+                  onChange={(e) => change(p._id, e.target.valueAsNumber)}
                 />
               </div>
             ))}

@@ -324,6 +324,13 @@ button {
     margin: 0
 }
 
+.product-meta .stock-status {
+    margin-top: 6px;
+    color: #a33b32;
+    font-size: 12px;
+    font-weight: 600
+}
+
 .product-card .btn {
     margin-top: 6px
 }
