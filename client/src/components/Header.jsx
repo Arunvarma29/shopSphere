@@ -37,6 +37,7 @@ export default function Header() {
           <Menu />
         </button>
         <Link to="/" className="brand" onClick={close}>
+          <img className="brand-mark" src="/shopsphere-logo.svg" alt="" />
           shop<span>sphere</span>
           <i>.</i>
         </Link>
@@ -88,6 +89,7 @@ export default function Header() {
           <aside className="mobile-drawer" onClick={(e) => e.stopPropagation()}>
             <div className="drawer-top">
               <Link to="/" className="brand" onClick={close}>
+                <img className="brand-mark" src="/shopsphere-logo.svg" alt="" />
                 shop<span>sphere</span>
                 <i>.</i>
               </Link>

@@ -115,10 +115,20 @@ em {
 }
 
 .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-size: 28.7px;
     letter-spacing: -1.6px;
     font-weight: 700;
+    white-space: nowrap;
     color: var(--ink)
+}
+
+.brand-mark {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto
 }
 
 .brand span {
