@@ -6,7 +6,7 @@ React + Vite storefront for the supplied ShopSphere Express/MongoDB backend. All
 
 - Responsive storefront, product listing, search, sort, category filter, product details
 - Cart saved in localStorage
-- Customer registration, login, account and order history
+- Customer registration with email verification, login, password reset, account and order history
 - Checkout using the backend's Cash on Delivery order endpoint
 - Admin dashboard for overview, products, categories, customers and order status
 - Bearer access-token authentication and HttpOnly refresh-cookie requests
@@ -57,7 +57,7 @@ The supplied backend already reads `COOKIE_SAME_SITE` and `COOKIE_SECURE`. Brows
 ## API paths used (match supplied server)
 
 - Public: `GET /products`, `GET /products/:id`
-- Auth: `POST /auth/register`, `POST /auth/login`, `POST /auth/refresh`, `POST /auth/logout`, `GET /auth/me`
+- Auth: `POST /auth/register`, `POST /auth/verify-email`, `POST /auth/login`, `POST /auth/forgot-password`, `POST /auth/reset-password`, `POST /auth/refresh`, `POST /auth/logout`, `GET /auth/me`
 - Customer: `POST /orders`, `GET /orders/mine`
 - Admin (Bearer token): `GET /admin/overview`, `/admin/products`, `/admin/orders`, `/admin/customers`, `/admin/categories`; corresponding POST/PATCH/DELETE routes from the server router.
 

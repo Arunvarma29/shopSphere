@@ -11,6 +11,11 @@ const userSchema = new mongoose.Schema(
       index: true,
     },
     passwordHash: { type: String, required: true, select: false },
+    isEmailVerified: { type: Boolean, default: false },
+    emailVerificationTokenHash: { type: String, select: false, index: true },
+    emailVerificationExpiresAt: { type: Date, select: false },
+    passwordResetTokenHash: { type: String, select: false, index: true },
+    passwordResetExpiresAt: { type: Date, select: false },
     role: {
       type: String,
       enum: ["customer", "admin"],

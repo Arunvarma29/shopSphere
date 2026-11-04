@@ -8,6 +8,7 @@ ShopSphere is a full-stack e-commerce starter for discovering and ordering every
 - View product details, categories, prices, and stock status.
 - Add available products to the cart and adjust quantities within stock limits.
 - Register, sign in, manage an account, and view order history.
+- Verify new accounts by email and reset forgotten passwords with expiring email links.
 - Place orders using cash on delivery.
 - Use an admin console to manage products, categories, customers, and orders.
 - Responsive ShopSphere storefront with an About page.
@@ -71,6 +72,9 @@ Edit `server/.env` and set at least:
 | `REFRESH_TOKEN_DAYS` | Refresh-token lifetime in days | `7` |
 | `COOKIE_SECURE` | Set secure cookies over HTTPS | `false` locally; `true` in production |
 | `COOKIE_SAME_SITE` | SameSite policy for refresh-token cookies | `lax` when frontend/backend are same-site; `none` for different sites (requires `COOKIE_SECURE=true`) |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE` | SMTP server used for account email | `smtp.gmail.com`, `465`, `true` for Gmail |
+| `SMTP_USER`, `SMTP_PASS` | SMTP credentials | Gmail address and a Google App Password (not your regular Gmail password) |
+| `EMAIL_FROM` | Sender displayed on account emails | `"ShopSphere <you@gmail.com>"` |
 | `ADMIN_NAME` | Name for the initial admin account | `Store Admin` |
 | `ADMIN_EMAIL` | Email for the initial admin account | `admin@example.com` |
 | `ADMIN_PASSWORD` | Initial admin password (at least 12 characters) | Set a unique secret |
@@ -80,6 +84,8 @@ Generate two different secrets and keep them private. For example, with OpenSSL:
 ```bash
 openssl rand -hex 32
 ```
+
+Account verification and password recovery require a working SMTP account. For Gmail, enable 2-Step Verification and create an App Password in your Google Account; use that App Password for `SMTP_PASS`. Set the SMTP variables in the backend host's environment as well as local `server/.env`. Verification links expire after 24 hours, reset links after 30 minutes, and neither link can be reused. New customer accounts are saved only after the email link is opened and a password is set. Accounts created before this change must verify their email on their next sign-in.
 
 The client example uses `VITE_API_URL=http://localhost:5000/api`. For deployment, set `VITE_API_URL` in the frontend host to the backend's public URL ending in `/api` (for example, `https://api.example.com/api`). Vite embeds this value at build time, so rebuild/redeploy the frontend after changing it. If the frontend and API share an origin through a reverse proxy, `/api` is used as the production default. Never commit `.env` files or put server secrets in client-side environment variables.
 

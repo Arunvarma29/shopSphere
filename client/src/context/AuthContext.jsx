@@ -42,9 +42,10 @@ export function AuthProvider({ children }) {
       async (error) => {
         const original = error.config;
         const url = original?.url || "";
-        const isAuthEndpoint = /\/auth\/(login|register|refresh|logout)/.test(
-          url,
-        );
+        const isAuthEndpoint =
+          /\/auth\/(login|register|verify-email|forgot-password|reset-password|refresh|logout)/.test(
+            url,
+          );
         if (
           error.response?.status !== 401 ||
           !original ||
@@ -121,7 +122,7 @@ export function AuthProvider({ children }) {
     };
   }, [clearSession, saveSession]);
 
-  const login = async (credentials) => {
+  const login = useCallback(async (credentials) => {
     try {
       const response = await axios.post(`${API_URL}/auth/login`, credentials, {
         withCredentials: true,
@@ -130,20 +131,56 @@ export function AuthProvider({ children }) {
     } catch (error) {
       throw new Error(getErrorMessage(error, "Unable to sign in."));
     }
-  };
+  }, [saveSession]);
 
-  const register = async (details) => {
+  const register = useCallback(async (details) => {
     try {
       const response = await axios.post(`${API_URL}/auth/register`, details, {
         withCredentials: true,
       });
-      return saveSession(response.data);
+      return response.data;
     } catch (error) {
       throw new Error(getErrorMessage(error, "Unable to create account."));
     }
-  };
+  }, []);
 
-  const logout = async () => {
+  const verifyEmail = useCallback(async (token, password) => {
+    try {
+      const body = { token };
+      if (password) body.password = password;
+      const response = await axios.post(`${API_URL}/auth/verify-email`, body);
+      return response.data;
+    } catch (error) {
+      throw new Error(getErrorMessage(error, "Unable to verify your email."));
+    }
+  }, []);
+
+  const requestPasswordReset = useCallback(async (email) => {
+    try {
+      const response = await axios.post(`${API_URL}/auth/forgot-password`, {
+        email,
+      });
+      return response.data;
+    } catch (error) {
+      throw new Error(
+        getErrorMessage(error, "Unable to request a password reset."),
+      );
+    }
+  }, []);
+
+  const resetPassword = useCallback(async (token, password) => {
+    try {
+      const response = await axios.post(`${API_URL}/auth/reset-password`, {
+        token,
+        password,
+      });
+      return response.data;
+    } catch (error) {
+      throw new Error(getErrorMessage(error, "Unable to reset your password."));
+    }
+  }, []);
+
+  const logout = useCallback(async () => {
     try {
       await axios.post(
         `${API_URL}/auth/logout`,
@@ -159,7 +196,7 @@ export function AuthProvider({ children }) {
       /* Clear local state even if the remote session has already expired. */
     }
     clearSession();
-  };
+  }, [accessToken, clearSession]);
 
   const value = useMemo(
     () => ({
@@ -168,10 +205,24 @@ export function AuthProvider({ children }) {
       authLoading,
       login,
       register,
+      verifyEmail,
+      requestPasswordReset,
+      resetPassword,
       logout,
       clearSession,
     }),
-    [user, accessToken, authLoading],
+    [
+      user,
+      accessToken,
+      authLoading,
+      login,
+      register,
+      verifyEmail,
+      requestPasswordReset,
+      resetPassword,
+      logout,
+      clearSession,
+    ],
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

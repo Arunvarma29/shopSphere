@@ -10,7 +10,13 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Account from "./pages/Account";
 import Admin from "./pages/Admin";
-import { Login, Register } from "./pages/AuthPages";
+import {
+  Login,
+  Register,
+  ForgotPassword,
+  ResetPassword,
+  VerifyEmail,
+} from "./pages/AuthPages";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -102,6 +108,36 @@ export default function App() {
             </>
           }
           path="/register"
+        />
+        <Route
+          element={
+            <>
+              <Header />
+              <ForgotPassword />
+              <Footer />
+            </>
+          }
+          path="/forgot-password"
+        />
+        <Route
+          element={
+            <>
+              <Header />
+              <ResetPassword />
+              <Footer />
+            </>
+          }
+          path="/reset-password"
+        />
+        <Route
+          element={
+            <>
+              <Header />
+              <VerifyEmail />
+              <Footer />
+            </>
+          }
+          path="/verify-email"
         />
         <Route element={<ProtectedRoute />}>
           <Route

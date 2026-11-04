@@ -15,8 +15,8 @@ export const protect = asyncHandler(async (req, res, next) => {
       .json({ message: "Session expired. Please sign in again." });
   }
   const user = await User.findById(payload.sub);
-  if (!user || !user.isActive)
-    return res.status(401).json({ message: "Account unavailable." });
+  if (!user || !user.isActive || !user.isEmailVerified)
+    return res.status(401).json({ message: "Account unavailable or email not verified." });
   req.user = user;
   next();
 });

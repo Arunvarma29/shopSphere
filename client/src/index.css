@@ -1160,6 +1160,25 @@ em {
     line-height: 1.6
 }
 
+.form-success {
+    color: var(--green);
+    font-size: 12px;
+    line-height: 1.7
+}
+
+.form-success p {
+    margin: 0 0 10px
+}
+
+.form-success strong {
+    overflow-wrap: anywhere
+}
+
+.auth-forgot-link {
+    text-align: right;
+    margin: -8px 0 0
+}
+
 .full-button {
     width: 100%;
     margin-top: 5px
