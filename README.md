@@ -70,6 +70,7 @@ Edit `server/.env` and set at least:
 | `ACCESS_TOKEN_TTL` | Access-token lifetime | `15m` |
 | `REFRESH_TOKEN_DAYS` | Refresh-token lifetime in days | `7` |
 | `COOKIE_SECURE` | Set secure cookies over HTTPS | `false` locally; `true` in production |
+| `COOKIE_SAME_SITE` | SameSite policy for refresh-token cookies | `lax` when frontend/backend are same-site; `none` for different sites (requires `COOKIE_SECURE=true`) |
 | `ADMIN_NAME` | Name for the initial admin account | `Store Admin` |
 | `ADMIN_EMAIL` | Email for the initial admin account | `admin@example.com` |
 | `ADMIN_PASSWORD` | Initial admin password (at least 12 characters) | Set a unique secret |
@@ -80,7 +81,7 @@ Generate two different secrets and keep them private. For example, with OpenSSL:
 openssl rand -hex 32
 ```
 
-The client example uses `VITE_API_URL=http://localhost:5000/api`. Change it if the API is hosted at a different URL. Never commit `.env` files or put server secrets in client-side environment variables.
+The client example uses `VITE_API_URL=http://localhost:5000/api`. For deployment, set `VITE_API_URL` in the frontend host to the backend's public URL ending in `/api` (for example, `https://api.example.com/api`). Vite embeds this value at build time, so rebuild/redeploy the frontend after changing it. If the frontend and API share an origin through a reverse proxy, `/api` is used as the production default. Never commit `.env` files or put server secrets in client-side environment variables.
 
 ### 3. Start MongoDB
 
@@ -171,7 +172,7 @@ Product listing supports `q`, `category`, `sort`, `page`, and `limit` query para
 - Public registration always creates a customer account. Admin access is provisioned separately through the seed script.
 - Admin API routes enforce authentication and admin authorization on the server.
 - Keep access and refresh JWT secrets strong, unique, and private.
-- Use HTTPS and set `COOKIE_SECURE=true` in production. Configure `CLIENT_URL` to the exact frontend origin.
+- Use HTTPS and set `COOKIE_SECURE=true` in production. Configure `CLIENT_URL` to the exact deployed frontend origin. If frontend and backend are on different sites, set `COOKIE_SAME_SITE=none`; this is required for refresh-token cookies to be sent cross-site.
 - Restrict MongoDB network access, use a least-privilege database user, and maintain backups.
 - Checkout currently supports cash on delivery only; online payment processing is not implemented.
 - Review inventory reservation and transaction handling before production. The current order flow rechecks stock but does not provide transactional stock reservation.

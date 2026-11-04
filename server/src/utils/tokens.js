@@ -12,7 +12,7 @@ export const hashToken = (token) =>
 export const refreshCookieOptions = () => ({
   httpOnly: true,
   secure: process.env.COOKIE_SECURE === "true",
-  sameSite: "lax",
+  sameSite: process.env.COOKIE_SAME_SITE || "lax",
   path: "/api/auth",
   maxAge: Number(process.env.REFRESH_TOKEN_DAYS || 7) * 86400000,
 });

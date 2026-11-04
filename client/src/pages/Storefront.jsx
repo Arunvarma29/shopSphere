@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { http } from "../api/http";
 import ProductCard from "../components/ProductCard";
+
 export default function Storefront() {
+
   const [products, setProducts] = useState([]),
     [q, setQ] = useState(""),
     [loading, setLoading] = useState(true),
     [error, setError] = useState("");
+
   useEffect(() => {
     setLoading(true);
     setError("");
@@ -33,6 +36,7 @@ export default function Storefront() {
       controller.abort();
     };
   }, [q]);
+  
   return (
     <main className="container page">
       <section className="hero">
