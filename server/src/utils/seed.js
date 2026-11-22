@@ -21,10 +21,17 @@ if (!admin) {
     role: "admin",
   });
   console.log("Initial admin created:", email);
-} else
-  console.log(
-    "Configured admin already exists; no role or password changes made.",
+} else if (admin.role !== "admin") {
+  const result = await User.collection.updateOne(
+    { _id: admin._id },
+    { $set: { role: "admin" } },
   );
+  if (result.modifiedCount !== 1)
+    throw new Error("Could not promote the configured admin account.");
+  console.log("Configured account promoted to admin; password unchanged.");
+} else {
+  console.log("Configured admin already exists; no password changes made.");
+}
 const category = await Category.findOneAndUpdate(
   { slug: "everyday-essentials" },
   {

@@ -105,7 +105,7 @@ Alternatively, update `MONGODB_URI` to use your MongoDB Atlas connection string.
 npm --prefix server run seed
 ```
 
-The seed script creates the configured admin account if it does not already exist. It adds the starter category and sample products only when the products collection is empty. The admin password is not changed for an existing account; change the initial password after setup.
+The seed script creates the configured admin account if it does not already exist, or promotes an existing account with the configured admin email to the admin role. It never changes an existing account's password. It adds the starter category and sample products only when the products collection is empty. Run the seed script again after configuring the admin email if an existing account needs admin access.
 
 ### 5. Run the application
 

@@ -54,6 +54,7 @@ export default function Header() {
               aria-label="Admin dashboard"
             >
               <LayoutDashboard />
+              <span>Admin</span>
             </Link>
           )}
           <Link

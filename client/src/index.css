@@ -2131,7 +2131,10 @@ em {
 }
 
 .admin-shortcut {
-    color: var(--green)
+    color: var(--green);
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600
 }
 
 @media(max-width:1000px) {
