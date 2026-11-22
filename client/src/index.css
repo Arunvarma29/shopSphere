@@ -15,7 +15,7 @@
     --green: #354d3d;
     --orange: #d8754d;
     --serif: 'Playfair Display', Georgia, serif;
-    --radius: 4px
+    --radius: 8px
 }
 
 * {
@@ -211,17 +211,17 @@ em {
 .hero-section {
     max-width: 1440px;
     margin: auto;
-    padding: 68px 9% 72px;
-    min-height: 590px;
+    padding: 54px 6.3% 58px;
+    min-height: 600px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(420px, .82fr) minmax(480px, 1.18fr);
     align-items: center;
-    gap: 50px;
+    gap: 38px;
     overflow: hidden
 }
 
 .hero-copy {
-    padding: 8px 0 0 4%
+    padding: 8px 0 0 2%
 }
 
 .eyebrow {
@@ -246,10 +246,10 @@ em {
 .auth-content h1,
 .empty-state h1 {
     font-family: var(--serif);
-    font-size: clamp(55.2px, 6.9vw, 89.7px);
-    line-height: 1.02;
-    letter-spacing: -2.8px;
-    margin: 0 0 23px
+    font-size: clamp(48px, 4.6vw, 68px);
+    line-height: 1.01;
+    letter-spacing: -2.4px;
+    margin: 0 0 20px
 }
 
 .hero-copy h1 em,
@@ -261,10 +261,10 @@ em {
 
 .hero-description {
     font-size: 15px;
-    line-height: 1.9;
+    line-height: 1.75;
     color: #77766f;
-    max-width: 355px;
-    margin-bottom: 29px
+    max-width: 390px;
+    margin-bottom: 27px
 }
 
 .button {
@@ -274,7 +274,7 @@ em {
     gap: 12px;
     padding: 14px 20px;
     border: 1px solid transparent;
-    border-radius: 2px;
+    border-radius: 7px;
     font-size: 12.6px;
     font-weight: 600;
     letter-spacing: .02em;
@@ -310,7 +310,7 @@ em {
     gap: 9px;
     color: #89877f;
     font-size: 11.5px;
-    margin-top: 43px
+    margin-top: 34px
 }
 
 .hero-note svg {
@@ -318,10 +318,57 @@ em {
 }
 
 .hero-art {
-    height: 430px;
+    height: 490px;
     position: relative;
-    background: #e8e8dd;
-    overflow: hidden
+    background: #ddd8cb;
+    overflow: hidden;
+    border-radius: var(--radius)
+}
+
+.hero-art>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 58%;
+    filter: saturate(.78) contrast(.96);
+    transition: transform .7s ease
+}
+
+.hero-art:hover>img {
+    transform: scale(1.015)
+}
+
+.hero-product-tag {
+    position: absolute;
+    left: 22px;
+    bottom: 22px;
+    width: 210px;
+    padding: 16px 18px;
+    background: rgba(248, 247, 244, .94);
+    backdrop-filter: blur(8px);
+    border-radius: 6px;
+    display: grid;
+    gap: 4px;
+    box-shadow: 0 12px 35px rgba(36, 36, 31, .12)
+}
+
+.hero-product-tag span {
+    color: var(--muted);
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: .14em
+}
+
+.hero-product-tag strong {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600
+}
+
+.hero-product-tag b {
+    color: var(--orange);
+    font-size: 11.5px;
+    margin-top: 4px
 }
 
 .hero-orbit {
@@ -548,7 +595,8 @@ em {
     display: block;
     position: relative;
     background: #eeece5;
-    overflow: hidden
+    overflow: hidden;
+    border-radius: var(--radius)
 }
 
 .product-image-wrap img,
@@ -570,7 +618,8 @@ em {
     left: 12px;
     background: #f8f7f4;
     padding: 6px 9px;
-    font-size: 10.4px
+    font-size: 10.4px;
+    border-radius: 5px
 }
 
 .product-card-info {
@@ -614,7 +663,8 @@ em {
     background: transparent;
     color: var(--green);
     display: grid;
-    place-items: center
+    place-items: center;
+    border-radius: 7px
 }
 
 .quick-add:hover {
@@ -670,7 +720,9 @@ em {
     display: grid;
     grid-template-columns: 1fr 1fr;
     min-height: 420px;
-    background: #eeece5
+    background: #eeece5;
+    border-radius: var(--radius);
+    overflow: hidden
 }
 
 .story-art {
@@ -948,7 +1000,9 @@ em {
 
 .detail-image {
     height: 540px;
-    background: #eeece5
+    background: #eeece5;
+    border-radius: var(--radius);
+    overflow: hidden
 }
 
 .detail-image img {
@@ -1134,7 +1188,7 @@ em {
 .category-create input {
     border: 1px solid #dedbd2;
     background: #fcfbf8;
-    border-radius: 2px;
+    border-radius: 6px;
     padding: 13px 12px;
     font-size: 12.6px;
     outline: 0;
@@ -1254,7 +1308,9 @@ em {
 
 .cart-item-image {
     height: 115px;
-    background: #eeece5
+    background: #eeece5;
+    border-radius: 6px;
+    overflow: hidden
 }
 
 .cart-item-info {
@@ -1360,7 +1416,8 @@ em {
 
 .checkout-form {
     background: #eeece5;
-    padding: 30px
+    padding: 30px;
+    border-radius: var(--radius)
 }
 
 .checkout-form h2 {
@@ -2080,7 +2137,8 @@ em {
 @media(max-width:1000px) {
     .hero-section {
         padding: 55px 6%;
-        gap: 25px
+        gap: 25px;
+        grid-template-columns: minmax(330px, .85fr) minmax(360px, 1.15fr)
     }
 
     .hero-art {
@@ -2088,7 +2146,7 @@ em {
     }
 
     .hero-copy h1 {
-        font-size: 71.3px
+        font-size: 58px
     }
 
     .product-grid,
@@ -2168,7 +2226,7 @@ em {
     }
 
     .hero-copy h1 {
-        font-size: 69px
+        font-size: 58px
     }
 
     .hero-art {
@@ -2507,7 +2565,7 @@ em {
     }
 
     .hero-copy h1 {
-        font-size: 59.8px
+        font-size: 52px
     }
 
     .form-grid {

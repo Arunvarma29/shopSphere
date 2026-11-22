@@ -41,48 +41,36 @@ export default function Home() {
       <section className="hero-section">
         <div className="hero-copy">
           <p className="eyebrow">
-            <span /> THE EVERYDAY EDITION
+            <span /> NEW COLLECTION · 2026
           </p>
           <h1>
-            Find your
+            Good things for
             <br />
-            <em>everyday</em> kind
-            <br />
-            of wonderful.
+            <em>everyday</em> living.
           </h1>
           <p className="hero-description">
-            Useful little things. Considered details. Pieces that make the
-            everyday feel a bit more special.
+            Useful pieces, honest materials and considered details, selected
+            to make every day feel a little better.
           </p>
           <Link className="button button-dark" to="/shop">
             Explore the collection <ArrowUpRight size={17} />
           </Link>
           <div className="hero-note">
             <Sparkles size={16} />
-            <span>Thoughtfully selected, always.</span>
+            <span>Free delivery on orders over ₹999</span>
           </div>
         </div>
         <div className="hero-art">
-          <div className="hero-orbit orbit-one" />
-          <div className="hero-orbit orbit-two" />
-          <div className="hero-sticker">
-            GOOD
-            <br />
-            THINGS
-            <br />
-            <span>INSIDE</span> ✳
+          <img
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=88"
+            alt="A quiet morning with freshly brewed coffee"
+          />
+          <div className="hero-product-tag">
+            <span>Morning ritual</span>
+            <strong>Ceramic coffee set</strong>
+            <b>From ₹899</b>
           </div>
-          <div className="hero-product-shape">
-            <div className="shape-sun" />
-            <div className="shape-vase">
-              <i />
-            </div>
-            <div className="shape-book book-one" />
-            <div className="shape-book book-two" />
-            <div className="shape-leaf leaf-one" />
-            <div className="shape-leaf leaf-two" />
-          </div>
-          <span className="hero-caption">THE LITTLE THINGS MATTER</span>
+          <span className="hero-caption">THE HOME EDIT · 01</span>
         </div>
       </section>
       <section className="benefit-strip">
