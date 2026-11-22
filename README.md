@@ -2,6 +2,24 @@
 
 ShopSphere is a full-stack e-commerce starter for discovering and ordering everyday products. It includes a React storefront, an Express API, MongoDB persistence, customer accounts, checkout with cash on delivery, and a protected admin console.
 
+## Live demo
+
+[Open the ShopSphere storefront](https://client-eta-six-62.vercel.app)
+
+## Screenshots
+
+| Storefront | Product collection | Shop |
+| --- | --- | --- |
+| ![ShopSphere homepage](client/public/ssp1.png) | ![Latest products](client/public/ssp2.png) | ![Shop page](client/public/ssp3.png) |
+
+| Shopping bag | Admin overview | Admin products |
+| --- | --- | --- |
+| ![Shopping bag](client/public/ssp4.png) | ![Admin overview](client/public/ssp5.png) | ![Admin product catalogue](client/public/ssp6.png) |
+
+| Add product | Admin orders | Admin customers |
+| --- | --- | --- |
+| ![Add product form](client/public/ssp7.png) | ![Admin orders](client/public/ssp8.png) | ![Admin customers](client/public/ssp9.png) |
+
 ## Features
 
 - Browse products and search by name, description, or tag.
